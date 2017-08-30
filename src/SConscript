@@ -1,0 +1,6 @@
+Import('env')
+
+env = env.Clone()
+
+env.SConscript('actions/SConscript', { 'env': env })
+env.SConscript('entities/SConscript', { 'env': env })
