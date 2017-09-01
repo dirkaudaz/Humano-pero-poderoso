@@ -1,6 +1,7 @@
 #pragma once
 
-#include <iostream>
+#include <ostream>
+#include <istream>
 #include <memory>
 #include <string>
 
@@ -12,7 +13,7 @@ constexpr size_t HELP_COMMAND = Util::simple_hash("help");
 namespace Shell
 {
 
-  template<class Engine>
+  template<class Engine, std::ostream &output_stream, std::istream &input_stream>
   class Shell
   {
   public:
@@ -25,8 +26,9 @@ namespace Shell
       std::string command;
       do
       {
-        engine->display_state(std::cout);
-        std::cin >> command;
+        engine->display_state(output_stream);
+        engine->display_prompt(output_stream);
+        input_stream >> command;
       }
       while (handle_command(command));
       return true;

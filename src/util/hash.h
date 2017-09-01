@@ -22,7 +22,6 @@ namespace Util
     std::size_t hash = 0;
     for (auto c : str)
     {
-std::cout << static_cast<std::size_t>(c) << std::endl;
       hash = hash*47 + c; 
     }
     return hash;
