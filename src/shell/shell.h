@@ -18,8 +18,6 @@ namespace Shell
   public:
     Shell(std::unique_ptr<Engine> e): engine(std::move(e))
     {
-std::cout << "Quit: " << QUIT_COMMAND << std::endl;
-std::cout << "Help: " << HELP_COMMAND << std::endl;
     }
 
     bool run()
@@ -39,7 +37,6 @@ std::cout << "Help: " << HELP_COMMAND << std::endl;
     bool handle_command(const std::string &command)
     {
        auto hash =  Util::simple_hash(command);
-std::cout << "Hash: " << hash << std::endl;
        switch(hash)
        {
        case QUIT_COMMAND:
