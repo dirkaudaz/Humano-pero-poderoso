@@ -1,6 +1,7 @@
 #pragma once
 
 #include "player_state.h"
+#include "resource_vector.h"
 #include "../types/resources.h"
 
 namespace Entities
@@ -8,12 +9,11 @@ namespace Entities
   class ResourceGenerator
   {
   public:
-    ResourceGenerator(Types::Resources type, int value);
+    ResourceGenerator(const ResourceVector &vector);
     void apply(PlayerState &state) const;
 
   private:
-    Types::Resources resource_type;
-    int value;
+    ResourceVector resource_vector;
 
   };
 }

@@ -2,4 +2,4 @@ Import('env')
 
 env = env.Clone()
 
-env.StaticObject('../entities.o', Glob('*.cpp'))
+env.StaticLibrary('../entities.a', Glob('*.cpp'))

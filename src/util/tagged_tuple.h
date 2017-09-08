@@ -48,7 +48,7 @@ namespace Util
     template<typename F, typename T, typename U, typename E, E... axes>
     struct _tt_functor
     {
-      static std::tuple<> apply(T &a, T &b)
+      static std::tuple<> apply(const T &a, const T &b)
       {
         return {};
       } 
@@ -57,7 +57,7 @@ namespace Util
     template<typename F, typename T, typename U, typename E, E axis, E... axes>
     struct _tt_functor<F, T, U, E, axis, axes...>
     {
-      static auto apply(T &a, T &b)
+      static auto apply(const T &a, const T &b)
       {
         F f;
         U val_a = a.template get<axis>();
@@ -98,18 +98,18 @@ namespace Util
     tagged_tuple(Args&&... values): Internal::tt_impl<typename Internal::_transform<T, U, vals...>::types>(std::forward<Args>(values)...) {} 
 
     template<T val>
-    U get()
+    U get() const
     {
       return std::get<Internal::_index<T, val, vals...>::value>(*this);
     }
 
-    type operator+(type& rhs)
+    type operator+(const type& rhs) const
 
     {
       return Internal::_tt_functor<Internal::sum<U>, type, U, T, vals...>::apply(*this, rhs);
     }
 
-    type operator-(type& rhs)
+    type operator-(const type& rhs) const
     {
       return Internal::_tt_functor<Internal::sub<U>, type, U, T, vals...>::apply(*this, rhs);
     }

@@ -2,13 +2,13 @@
 
 using namespace Entities;
 
-ResourceGenerator::ResourceGenerator(Types::Resources type, int value): resource_type(type), value(value)
+ResourceGenerator::ResourceGenerator(const ResourceVector &vector): resource_vector(vector)
 {
 }
 
 void ResourceGenerator::apply(PlayerState &state) const
 {
-  state.add_resource(resource_type, value);
+  state.add_resources(resource_vector);
 }
 
 
