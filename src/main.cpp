@@ -3,13 +3,13 @@
 
 #include "util/parser.h"
 #include "actions/resource_generation.h"
+#include "shell/basic_engine.h"
+#include "shell/shell.h"
 
 int main(int argc, char** argv)
 {
   auto generators = Util::parse<Actions::ResourceGeneration>(argv[1]);
-  for (auto generator : generators)
-  {
-    std::cout << generator.to_string();
-  }
+  Shell::Shell<Shell::BasicEngine, std::cout, std::cin> shell(Shell::BasicEngine(std::move(generators)));
+  shell.run();
   return 0;
 }

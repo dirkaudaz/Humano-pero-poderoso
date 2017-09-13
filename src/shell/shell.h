@@ -17,7 +17,7 @@ namespace Shell
   class Shell
   {
   public:
-    Shell(std::unique_ptr<Engine> e): engine(std::move(e))
+    Shell(Engine&& e): engine(e)
     {
     }
 
@@ -26,15 +26,15 @@ namespace Shell
       std::string command;
       do
       {
-        engine->display_state(output_stream);
-        engine->display_prompt(output_stream);
+        engine.display_state(output_stream);
+        engine.display_prompt(output_stream);
         input_stream >> command;
       }
       while (handle_command(command));
       return true;
     }
   private:
-    std::unique_ptr<Engine> engine;
+    Engine engine;
 
     bool handle_command(const std::string &command)
     {
@@ -46,7 +46,7 @@ namespace Shell
        case HELP_COMMAND:
          break;
        default:
-         engine->handle_command(command);
+         engine.handle_command(command);
          break;
        }
        return true;

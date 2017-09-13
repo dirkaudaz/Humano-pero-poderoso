@@ -2,7 +2,7 @@ Import('env')
 
 env = env.Clone()
 
-subdirs = ['actions', 'entities']
+subdirs = ['actions', 'entities', 'shell']
 
 objects = [ obj for subdir in subdirs for objs in env.SConscript('%s/SConscript' % subdir, { 'env': env }) for obj in objs ]
 

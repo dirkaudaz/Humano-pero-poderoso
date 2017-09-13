@@ -1,0 +1,8 @@
+Import('env')
+
+env = env.Clone()
+
+sources = Glob('*.cpp')
+objects = [ env.StaticObject(x) for x in sources ]
+
+Return('objects')
