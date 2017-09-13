@@ -2,5 +2,12 @@ Import('env')
 
 env = env.Clone()
 
-env.SConscript('actions/SConscript', { 'env': env })
-env.SConscript('entities/SConscript', { 'env': env })
+subdirs = ['actions', 'entities']
+
+objects = [ obj for subdir in subdirs for objs in env.SConscript('%s/SConscript' % subdir, { 'env': env }) for obj in objs ]
+
+executables = [ env.StaticObject(src) for src in [ 'main.cpp' ] ]
+
+retVal = { 'objects': objects, 'executables': executables }
+
+Return('retVal')

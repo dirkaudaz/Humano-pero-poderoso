@@ -20,7 +20,7 @@ namespace Util
   }
 
   template<char delim, typename... Ts>
-  void tokenize(std::string &src, Ts&... args)
+  void tokenize(const std::string &src, Ts&... args)
   {
     std::istringstream iss(src);
     Internal::tok<delim>(iss, args...);
