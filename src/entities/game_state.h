@@ -1,5 +1,6 @@
 #pragma once
 
+#include <initializer_list>
 #include <map>
 
 #include "player_state.h"
@@ -10,6 +11,8 @@ namespace Entities
   class GameState
   {
   public:
+    GameState(std::initializer_list<PlayerState> player_states);
+
     GameState(const GameState& state);
   
     PlayerState& get_player_state(const Elements::Worker &worker);
