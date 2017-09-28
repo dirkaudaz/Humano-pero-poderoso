@@ -2,7 +2,7 @@
 
 namespace Types
 {
-  enum Resources
+  enum class Resources
   {
     Support,
     Money,

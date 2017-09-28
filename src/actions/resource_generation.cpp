@@ -10,11 +10,7 @@ using namespace Actions;
 
 ResourceGeneration ResourceGeneration::deserialize(std::string &serialized)
 {
-  std::string name, support_str, money_str, corruption_str;
-  Util::tokenize<','>(serialized, name, support_str, money_str, corruption_str);
-  int support = std::stoi(support_str),
-      money = std::stoi(money_str),
-      corruption = std::stoi(corruption_str);
+  auto [name, support, money, corruption] = Util::tokenize<',', std::string, int, int, int>(serialized);
   Entities::ResourceGenerator generator({ support, money, corruption });
   return ResourceGeneration(name, generator);
 }
