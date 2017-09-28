@@ -30,7 +30,7 @@ namespace Shell
         engine.display_prompt(output_stream);
         input_stream >> command;
       }
-      while (handle_command(command));
+      while (!input_stream.eof() && handle_command(command));
       return true;
     }
   private:

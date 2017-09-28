@@ -7,7 +7,7 @@ namespace Util
 {
 
   template<class Entity>
-  std::vector<Entity> parse(const std::string &filename)
+  std::vector<Entity> file_parser(const std::string &filename)
   {
      std::ifstream file(filename);
      std::vector<std::string> lines;

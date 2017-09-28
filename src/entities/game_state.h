@@ -4,6 +4,7 @@
 #include <map>
 
 #include "player_state.h"
+#include "../actions/action.h"
 #include "../elements/worker.h"
 
 namespace Entities
@@ -18,6 +19,7 @@ namespace Entities
     PlayerState& get_player_state(const Elements::Worker &worker);
   private:
     std::map<uint32_t, PlayerState> player_states;
+    std::vector<std::tuple<Actions::Action, bool>> actions;
   };
 }
 

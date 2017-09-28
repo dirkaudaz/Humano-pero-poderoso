@@ -3,12 +3,14 @@
 #include <sstream>
 #include <string>
 #include <tuple>
+#include <type_traits>
+
+#include "parse.h"
 
 namespace Util
 {
   namespace Internal
   {
-
     template<char delim, typename T, typename... Ts>
     struct tok_impl
     {
@@ -18,25 +20,14 @@ namespace Util
       }
     };
 
-    template<char delim>
-    struct tok_impl<delim, std::string>
+    template<char delim, typename T>
+    struct tok_impl<delim, T>
     {
-      static std::tuple<std::string> tok(std::istringstream &iss)
+      static std::tuple<T> tok(std::istringstream &iss)
       {
         std::string s;
         std::getline(iss, s, delim);
-        return { s };
-      }
-    };
-
-    template<char delim>
-    struct tok_impl<delim, int>
-    {
-      static std::tuple<int> tok(std::istringstream &iss)
-      {
-        std::string s;
-        std::getline(iss, s, delim);
-        return { std::stoi(s) };
+        return { parse<T>(s) };
       }
     };
   }
